@@ -1,0 +1,4 @@
+#08.25.2017 
+First release
+#09.01.2017
+Modified the "run_HiCtrans.pl" script to generate all the chromosome combination translocation result.
