@@ -9,7 +9,7 @@ chr1    240000  280000  7       1       240000  280000  1000    0.358   0.095   
 chr1    280000  320000  8       1       280000  320000  1000    0.394   0.051   I
 chr1    320000  360000  9       1       320000  360000  1000    0.407   0.066   I
 
-We have now added scripts to create this genomic feature file. The scripts are under "utility" folder. Open the "create_F_GC_MAP_file.pl" file and the required varibaled inside the program as per your requirement.
+To create this genomic feature file use the scripts are under "utility" folder. Open the "create_F_GC_MAP_file.pl" file and change the required variables inside the program as per your requirement. Type "perl create_F_GC_MAP_file.pl" to generate the genomic feature file.
 
 This file can also be created by following the HiCNorm protocol (http://www.people.fas.harvard.edu/~junliu/HiCNorm/estimate_mapp_sub.rar).
 
