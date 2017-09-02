@@ -1,7 +1,8 @@
 #Download the file wget ftp://hgdownload.cse.ucsc.edu/gbdb/hg19/bbi/wgEncodeCrgMapabilityAlign50mer.bw
 #bigWigToBedGraph wgEncodeCrgMapabilityAlign50mer.bw hg19.MapabilityAlign50mer.bedGraph
 #
-$frag = "HindIII_resfrag_hg19.bed"; #Change the restriction fragment file as per your experiment
+####### User specific parameters #######
+$frag = "HindIII_resfrag_hg19.bed"; #Change the restriction fragment file as per your experiment. Some restriction fragment files for hg/mm genomes are provided in the "HindIII_resfrag_files.zip" file 
 
 $frag_size = 500;
 
@@ -22,6 +23,7 @@ $chrom_size_file = "chrom_hg19.sizes"; #Chromosome size file
 $bedtools = "/mnt/BioApps/bedtools/bin/bedtools"; #bedtools path
 
 $blacklisted_region = "EncodeExcludableRegions.hg19.bed"; # Keep this variable as "No" if you don't have the black listed region information
+#########################################
 
 open (out,">F_GC_MAP.file.sh");
 print out "awk '{print \$1\"\\t\"\$2\"\\t\"\$2+$frag_half\"\\t\"\$4\"\\t\"\$2\"\\t\"\$3\"\\t\"\$3-\$2\"\\n\"\$1\"\\t\"\$3-$frag_half\"\\t\"\$3\"\\t\"\$4\"\\t\"\$2\"\\t\"\$3\"\\t\"\$3-\$2}' $frag|awk '{if(\$2 >= 0){print}}'|sortBed > $frag_file_name.bed\n";
