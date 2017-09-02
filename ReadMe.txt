@@ -27,5 +27,5 @@ To scan all the chromosomes please create a *.input.txt file like the following
 T47D.bed #Full genome bed file with index information 
 T47D.matrix #Full genome Hi-C matrix
 all #all combination of chromosome will be checked
-all
+all #all combination of chromosome will be checked
 _____________________________________________________________________
