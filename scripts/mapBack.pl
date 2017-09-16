@@ -29,7 +29,7 @@ while ($i <= $#result){
 		@binomData = split(/\s+/,$binomFile[$j]);
 		$chrA_bp = @binomData[1];
 		$chrB_bp = @binomData[3];
-		if ($chrA_bp >= $chrA_lb && $chrA_bp <= $chrA_ub && $chrB_bp >= $chrB_lb && $chrB_bp <= $chrB_ub){	
+		if ($chrA_bp >= $chrA_lb && $chrA_bp <= $chrA_ub && $chrB_bp >= $chrB_lb && $chrB_bp <= $chrB_ub && @binomData[4] > 6){	
 			if ($check > @binomData[5]){
 				$check = @binomData[5];
 				$breakPoint{$i} = "@binomData[0]\t$chrA_lb\t@binomData[1]\t$chrA_ub\t\t@binomData[2]\t$chrB_lb\t@binomData[3]\t$chrB_ub\t@binomData[4]";
