@@ -53,7 +53,7 @@ elsif ($chrA eq "all" && $chrB eq "all"){
 		$i++;
 	}
 	print out "echo \"chrA\t5'-Boundary\tBreakPoint\t3'-Boundary\tchrB\t5'-Boundary\tBreakPoint\t3'-Boundary\tCount\" > All.chromosome.Translocation.result\n";
-	print out "chr*_chr*_Folder/*.Translocation.result|grep -v \"Count\" >> All.chromosome.Translocation.result\n";
+	print out "cat chr*_chr*_Folder/*.Translocation.result|grep -v \"Count\" >> All.chromosome.Translocation.result\n";
 	close out;
 }
 `chmod 755 HiCtrans_$stamp.$job.sh`;
