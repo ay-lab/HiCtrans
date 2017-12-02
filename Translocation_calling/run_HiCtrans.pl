@@ -4,6 +4,7 @@ chomp (@input[0], @input[1], @input[2], @input[3], @input[4]);
 $chrA = @input[2];
 $chrB = @input[3];
 $folder = @input[4];
+$count_filter = 10; #Filter out intergenic-interactions below this contact count; Can be changed based on sample. 
 
 $stamp = `date|awk '{print \$3_\$2_\$6}'`; 
 $job   = $$;
@@ -53,7 +54,7 @@ elsif ($chrA eq "all" && $chrB eq "all"){
 		$i++;
 	}
 	print out "echo \"chrA\t5'-Boundary\tBreakPoint\t3'-Boundary\tchrB\t5'-Boundary\tBreakPoint\t3'-Boundary\tCount\" > All.chromosome.Translocation.result\n";
-	print out "cat chr*_chr*_Folder/*.Translocation.result|grep -v \"Count\"|awk '{if(\$9 > 5){print}}' >> All.chromosome.Translocation.result\n";
+	print out "cat chr*_chr*_Folder/*.Translocation.result|grep -v \"Count\"|awk '{if(\$9 > $count_filter){print}}' >> All.chromosome.Translocation.result\n";
 	close out;
 }
 `chmod 755 HiCtrans_$stamp.$job.sh`;
