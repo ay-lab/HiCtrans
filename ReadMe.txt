@@ -1,6 +1,7 @@
 Requirement:
-R "changepoint" package. This can be installed by typing install.packages("changepoint") from R interactive enviornment.
+R "changepoint and optparse" package. This can be installed by typing install.packages(c("changepoint","optparse")) from R interactive enviornment.
 _____________________________________________________________________
+Quick start:
 
 To run, please go inside the "Translocation_calling" folder and type :
 perl run_HiCtrans.pl T47D.chr7_chr15.input.txt
@@ -10,22 +11,24 @@ Currently HiCtrans can call translocations from 40Kb resolution file but can cal
 We use this file to filter out low GC content, mappability and blacklisted regions from the inter-chromosomal Hi-C data.
 Please change the  "../data/hg19.fa.40000.genome_feature.txt" line in "scripts/transNormScript.pl" file in order to use for other resolutions.
 _____________________________________________________________________
-
+Note:
 To generate the genome feature file for other resolutions, genomes or restriction fragments use the our "./data/utility/create_F_GC_MAP_file.pl" script. For more details check the "readme.txt" under "data"
 _____________________________________________________________________
+Specific chromosome wise translocation detection:
 
 To run individual chromosomes separately, create a *.input.txt file like the following. E.g. The T47D.chr7_chr15.input.txt file has all 
 the information to call a translocation from a Hi-C matrix file. The file descriptions is as follows,
 
-T47D.chr7_15.bed #This is the bed file with index informatio. Users can provide the full genome bed file.
+T47D.chr7_15.bed  #This is the bed file with index information. Users can provide the full genome bed file.
 
 T47D.chr7_15.matrix #Hi-C matrix file in sparse matrix format. Unser can provide the full genome Hi-C matrix also. The format of the 
 matrix file should be same as that of the example file.
-chr7 #Chromosome A
-chr15 #Chromosome B
+chr7              #Chromosome A
+chr15             #Chromosome B
 chr7_chr15_Folder #All the results will be placed under this folder once the calling part is finished
 
-All chromosome scanning:
+_____________________________________________________________________
+Genome wide translocation detection:
 
 To scan all the chromosomes please create a *.input.txt file inside "Translocation_calling" folder.
 In the input.txt write the following lines
@@ -46,3 +49,23 @@ perl run_HiCtrans.pl input.txt (This will create the bash file to run the job)
 
 Note: HiCtrans requires a restriction enzyme specific genome feature file with GC content, mappability information for translocation detection. By default hg19 HindIII restriction enzyme specific file @40kb resolution is provided.
 _____________________________________________________________________
+Output:
+
+After completion "All.chromosome.Translocation.EntropyFiltered.Final.result" file will be generated. This file will contain the translocation breakpoint coordinates. Following is an example output:
+
+chrA  BoundaryAS  BreakPointA BoundaryAE  chrB  BoundaryBS  BreakPointB BoundaryBE  count box.entropy random.entropy.99uCI  ratio
+chr7  81900000  87260000  87340000  chr15 29980000  30100000  34140000  23  0.146 0.028 5.159
+
+chrA  & chrB: Translocated chromosome pairs.
+
+BoundaryAS, BoundaryAE, BoundaryBS and BoundaryBE: chrA breakpoint boundary start, chrA breakpoint boundary end, chrB breakpoint boundary start, and chrB breakpoint boundary end.
+
+BreakPointA, BreakPointB: chrA and chrB breakpoint coordinate.
+
+count: Contact count at BreakPointA and BreakPointB coordinate.
+
+box.entropy: Normalized entropy of counts within BoundaryAS, BoundaryAE, BoundaryBS and BoundaryBE.
+
+random.entropy.99uCI: Normalized entropy + 99% confidence interval of counts of random boxes (Similar area defined by BoundaryAS, BoundaryAE, BoundaryBS and BoundaryBE but excluding all the breakpoint boundaries).
+
+ratio: box.entropy/random.entropy.99uCI (Translocated region will be enriched in heterogeneous mixture of different count values [high entropy] compared to a random region with homogeneous count values [Low entropy])  
