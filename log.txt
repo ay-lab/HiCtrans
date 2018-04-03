@@ -1,5 +1,13 @@
 #08.25.2017 
 First release
+
 #09.01.2017
 Modified the "run_HiCtrans.pl" script to generate all the chromosome combination translocation result.
 Script to generate the genomic feature file is added.
+
+#04.02.2018
+Added "noiseReduction.r" script. This script will calculate the extropy of count 
+distribution inside the translocation boxes predicted by HiCtrans (*.Translocation.results) 
+as compared to random boxes. If there is a true translocation than count distribution 
+will be more random and should have high normalized entropy value as compared to similar 
+sized random boxes.
