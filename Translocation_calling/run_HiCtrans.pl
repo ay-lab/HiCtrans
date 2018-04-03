@@ -84,7 +84,7 @@ elsif ($chrA eq "all" && $chrB eq "all"){
 	
 	## 04/02/2018 ##
 	print out "echo \"chrA\tBoundaryAS\tBreakPointA\tBoundaryAE\tchrB\tBoundaryBS\tBreakPointB\tBoundaryBE\tCount\tbox.entropy\trandom.entropy.99uCI\tratio\" > All.chromosome.Translocation.EntropyFiltered.Final.result\n";
-	print out "cat chr*_chr*_Folder/*.Translocation.EntropyFiltered.result|grep -v \"count\"|awk '{if(\$9 > $count_filter){print}}' >> All.chromosome.Translocation.EntropyFiltered.Final.result\n";
+	print out "cat chr*_chr*_Folder/*.Translocation.EntropyFiltered.result|grep -v \"count\"' >> All.chromosome.Translocation.EntropyFiltered.Final.result\n";
 	################
 
 	close out;
