@@ -69,3 +69,8 @@ box.entropy: Normalized entropy of counts within BoundaryAS, BoundaryAE, Boundar
 random.entropy.99uCI: Normalized entropy + 99% confidence interval of counts of random boxes (Similar area defined by BoundaryAS, BoundaryAE, BoundaryBS and BoundaryBE but excluding all the breakpoint boundaries).
 
 ratio: box.entropy/random.entropy.99uCI (Translocated region will be enriched in heterogeneous mixture of different count values [high entropy] compared to a random region with homogeneous count values [Low entropy])  
+
+_____________________________________________________________________
+Contact
+
+abhijit@lji.org (Abhijit Chakraborty)
