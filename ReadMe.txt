@@ -71,6 +71,52 @@ random.entropy.99uCI: Normalized entropy + 99% confidence interval of counts of 
 ratio: box.entropy/random.entropy.99uCI (Translocated region will be enriched in heterogeneous mixture of different count values [high entropy] compared to a random region with homogeneous count values [Low entropy])  
 
 _____________________________________________________________________
+Juicebox output to HiCtrans matrix format conversion
+
+If you have an output file from Juicebox (e.g. by following way java -jar juicebox_tools.7.5.jar dump observed NONE K562.combined.hic 1 10 BP 50000 chr1_chr10.txt) then you can convert the chr1_chr10.txt file to HiCtrans input files by using "juiceboxToHiCtrans_MatrixFormat.r" program present under scripts folder.
+
+For example to convert the chr1_chr10.txt file use the script in the following way
+
+Rscript juiceboxToHiCtrans_MatrixFormat.r --bedtools bedtools --genomesize hg19.sizes --resolution 50000 --column1 chr1 --column2 chr10 --juicebox_file chr1_chr10.txt
+
+This script will create two files, input to the HiCtrans. 
+
+chr1_chr10.hictrans.index.bed and chr1_chr10.hictrans.matrix file. 
+
+for help just do 
+
+Rscript juiceboxToHiCtrans_MatrixFormat.r -h
+
+Usage: juiceboxToHiCtrans_MatrixFormat.r [options]
+
+
+Options:
+        --bedtools=BEDTOOLS
+                Path to bedtools program
+
+        --genomesize=GENOMESIZE
+                chromosome wise genome size file. eg. a file like hg19.txt with followign information
+        chr1    249250621
+        chr2    243199373
+        chr3    198022430
+        ....
+
+
+        --resolution=RESOLUTION
+                Hi-C resolution
+
+        --column1=COLUMN1
+                Column1 chromosome name of juicebox output
+
+        --column2=COLUMN2
+                Column2 chromosome name of juicebox output
+
+        --juicebox_file=JUICEBOX_FILE
+                Juicebox output file name
+
+        -h, --help
+                Show this help message and exit
+_____________________________________________________________________
 Contact
 
 abhijit@lji.org (Abhijit Chakraborty)
