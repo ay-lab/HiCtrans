@@ -4,7 +4,7 @@ library(optparse)
 
 option_list = list(
         make_option("--bedtools",  type="character", help="Path to bedtools program"),
-        make_option("--genomesize",   type="character", help="chromosome wise genome size file. eg. a file like hg19.txt with followign information
+        make_option("--genomesize",   type="character", help="chromosome wise genome size file. eg. a file like hg19.txt with following information
 	chr1    249250621
 	chr2    243199373
 	chr3    198022430
