@@ -11,3 +11,7 @@ distribution inside the translocation boxes predicted by HiCtrans (*.Translocati
 as compared to random boxes. If there is a true translocation than count distribution 
 will be more random and should have high normalized entropy value as compared to similar 
 sized random boxes.
+
+#06.19.2018
+Added "juiceboxToHiCtrans_MatrixFormat.r" script which converts juiceboxbox output files into
+HiCtrans input files (*.bed and *.matrix files)
