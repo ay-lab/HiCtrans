@@ -48,4 +48,4 @@ undef %breakPoint;
 undef @fragsFile;
 undef @binomFile;
 undef @result;
-`rm @ARGV[3]`;
+#`rm @ARGV[3]`;
