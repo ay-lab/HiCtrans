@@ -4,6 +4,8 @@
 ####### User specific parameters #######
 $frag = "HindIII_resfrag_hg19.bed"; #Change the restriction fragment file as per your experiment. Some restriction fragment files for hg/mm genomes are provided in the "HindIII_resfrag_files.zip" file 
 
+$frag_size = 500;
+
 $read_length = 50; #Hi-C fastq read length
 
 $frag_file_name = "HindIII_hg19.$frag_size.$read_length";
@@ -20,8 +22,6 @@ $bedtools = "/mnt/BioApps/bedtools/bin/bedtools"; #bedtools path
 
 $blacklisted_region = "EncodeExcludableRegions.hg19.bed"; # Keep this variable as "No" if you don't have the black listed region information
 #########################################
-$frag_size = 500;
-
 $frag_half = $frag_size/2;
 
 open (out,">F_GC_MAP.file.sh");
