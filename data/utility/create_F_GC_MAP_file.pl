@@ -2,6 +2,8 @@
 #bigWigToBedGraph wgEncodeCrgMapabilityAlign50mer.bw hg19.MapabilityAlign50mer.bedGraph
 #
 ####### User specific parameters #######
+$re_name = "HindIII"; #Change the restriction enzyme name
+
 $frag = "HindIII_resfrag_hg19.bed"; #Change the restriction fragment file as per your experiment. Some restriction fragment files for hg/mm genomes are provided in the "HindIII_resfrag_files.zip" file 
 
 $frag_size = 500;
@@ -24,7 +26,9 @@ $blacklisted_region = "EncodeExcludableRegions.hg19.bed"; # Keep this variable a
 #########################################
 $frag_half = $frag_size/2;
 
-open (out,">F_GC_MAP.file.sh");
+$name = "$re_name.$read_length"."mer.$resolution";
+
+open (out,">F_GC_MAP.$name.sh");
 print out "awk '{print \$1\"\\t\"\$2\"\\t\"\$2+$frag_half\"\\t\"\$4\"\\t\"\$2\"\\t\"\$3\"\\t\"\$3-\$2\"\\n\"\$1\"\\t\"\$3-$frag_half\"\\t\"\$3\"\\t\"\$4\"\\t\"\$2\"\\t\"\$3\"\\t\"\$3-\$2}' $frag|awk '{if(\$2 >= 0){print}}'|sortBed > $frag_file_name.bed\n";
 print out "bedtools nuc -fi $fasta_file -bed $frag_file_name.bed > $frag_file_name.GC.bed\n";
 print out "bedtools map -a $frag_file_name.GC.bed -b $map_bedgraph -c 4 -o mean > $frag_file_name.GC_Map.bed\n";
@@ -40,7 +44,7 @@ else {
 	print out "$bedtools map -a sorted.$fasta_file.$resolution.bed -b sorted.$frag_file_name.F_GC_MAP.bed -c 5 -o mean -null 0 > sorted.$fasta_file.$resolution.MAP.bed\n";
 	print out "$bedtools map -a sorted.$fasta_file.$resolution.MAP.bed -b $blacklisted_region -c 4 -o collapse -null I|cut -d, -f 1 > sorted.$fasta_file.$resolution.MAP.BL.bed\n";
 }
-print out "perl create_genome_feature.pl $fasta_file.$resolution.bed sorted.$fasta_file.$resolution.GC.bed sorted.$fasta_file.$resolution.MAP.BL.bed > $fasta_file.$resolution.genome_feature.txt\n";
+print out "perl create_genome_feature.pl $fasta_file.$resolution.bed sorted.$fasta_file.$resolution.GC.bed sorted.$fasta_file.$resolution.MAP.BL.bed > $fasta_file.$name.genome_feature.txt\n";
 print out "rm sorted.*.bed";
 close out;
-`chmod 755 F_GC_MAP.file.sh`;
+`chmod 755 F_GC_MAP.$name.sh`;
