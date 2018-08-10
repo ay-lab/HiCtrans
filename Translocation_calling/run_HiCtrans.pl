@@ -70,7 +70,7 @@ elsif ($chrA eq "all" && $chrB eq "all"){
         		print out "mv $chr[$i]-$chr[$j].Translocation.result $chr[$i]_$chr[$j]_Folder/\n";
 
 			## 04/02/2018 ##
-			print out "mv $chr[$i]-$chr[$j].Translocation.EntropyFiltered.result $folder/\n";
+			print out "mv $chr[$i]-$chr[$j].Translocation.EntropyFiltered.result $chr[$i]_$chr[$j]_Folder/\n";
 			################
 			$j++;
 		}
