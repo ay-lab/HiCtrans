@@ -60,7 +60,7 @@ elsif ($chrA eq "all" && $chrB eq "all"){
         		print out "perl ../scripts/mapBack.pl $chr[$i] $chr[$j] $chr[$i]-$chr[$j]/$chr[$i]-$chr[$j].fragsfile $chr[$i]-$chr[$j].tmp.result > $chr[$i]-$chr[$j].Translocation.result\n";
 			
 			## 04/02/2018 ##
-			print out "Rscript ../scripts/noiseReduction.r -f $chrA-$chrB/$chrA-$chrB.intersfile -t $chrA-$chrB.Translocation.result -s 10 -c $count_filter -n $ratio_filter -o $chrA-$chrB.Translocation.EntropyFiltered.result\n";
+			print out "Rscript ../scripts/noiseReduction.r -f $chr[$i]-$chr[$j]/$chr[$i]-$chr[$j].intersfile -t $chr[$i]-$chr[$j].Translocation.result -s 10 -c $count_filter -n $ratio_filter -o $chr[$i]-$chr[$j].Translocation.EntropyFiltered.result\n";
 			################
 		
         		print out "mkdir $chr[$i]_$chr[$j]_Folder\n";
@@ -70,7 +70,7 @@ elsif ($chrA eq "all" && $chrB eq "all"){
         		print out "mv $chr[$i]-$chr[$j].Translocation.result $chr[$i]_$chr[$j]_Folder/\n";
 
 			## 04/02/2018 ##
-			print out "mv $chrA-$chrB.Translocation.EntropyFiltered.result $folder/";
+			print out "mv $chr[$i]-$chr[$j].Translocation.EntropyFiltered.result $folder/\n";
 			################
 			$j++;
 		}
