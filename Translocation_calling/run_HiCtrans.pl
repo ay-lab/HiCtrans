@@ -28,7 +28,7 @@ if ($chrA ne "all" && $chrB ne "all"){
 	print out "mv $input $folder/\n";
 	print out "mv $chrA-$chrB $folder/\n";
 	print out "mv $chrA-$chrB.tmp.result $folder/\n";
-	print out "mv $chrA-$chrB.Translocation.result $folder/";
+	print out "mv $chrA-$chrB.Translocation.result $folder/\n";
 	
 	## 04/02/2018 ##
 	print out "mv $chrA-$chrB.Translocation.EntropyFiltered.result $folder/";
