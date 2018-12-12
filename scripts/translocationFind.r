@@ -1,5 +1,6 @@
 #This code can be called from another Rscript as e.g. matseg(mat = matrix, lambda = 1.12, method = "BinSeg")
 #This will produce a set of segments with their average signal value and corresponding p.value 
+options(warn=-1)
 library(changepoint)
 matseg <- function(mat,lambda,method){ 
 	chrAposStart <- c()

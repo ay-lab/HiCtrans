@@ -12,8 +12,10 @@ while ($i <= $#fragsFile){
 	undef @fragsData;
 	$i++;
 }
-
-print "chrA\t5'-Boundary\tBreakPoint\t3'-Boundary\tchrB\t5'-Boundary\tBreakPoint\t3'-Boundary\tCount\n";
+########### Abhijit: 12/10/2018 ###########
+#print "chrA\t5'-Boundary\tBreakPoint\t3'-Boundary\tchrB\t5'-Boundary\tBreakPoint\t3'-Boundary\tCount\n";
+print "chrA\t5'-Boundary\t3'-Boundary\tchrB\t5'-Boundary\t3'-Boundary\tMaxCount\n";
+###########
 $i = 0;
 while ($i <= $#result){
 	$check = 1;
@@ -22,7 +24,10 @@ while ($i <= $#result){
 	$chrA_lb = $index{@resultData[0]}{$chrA};
 	$chrA_ub = $index{@resultData[1]}{$chrA};
 	$chrB_lb = $index{@resultData[2]}{$chrB};
-        $chrB_ub = $index{@resultData[3]}{$chrB};
+        $chrB_ub = $index{@resultData[3]}{$chrB}; 
+ 
+        ############ Abhijit: 12/10/2018 ############
+        
 	$j = 0;
 	while ($j <= $#binomFile){
         	chomp $binomFile[$j];
@@ -32,7 +37,10 @@ while ($i <= $#result){
 		if ($chrA_bp >= $chrA_lb && $chrA_bp <= $chrA_ub && $chrB_bp >= $chrB_lb && $chrB_bp <= $chrB_ub && @binomData[4] > 6){	
 			if ($check > @binomData[5]){
 				$check = @binomData[5];
-				$breakPoint{$i} = "@binomData[0]\t$chrA_lb\t@binomData[1]\t$chrA_ub\t\t@binomData[2]\t$chrB_lb\t@binomData[3]\t$chrB_ub\t@binomData[4]";
+   				########### Abhijit: 12/10/2018 ###########
+				#$breakPoint{$i} = "@binomData[0]\t$chrA_lb\t@binomData[1]\t$chrA_ub\t\t@binomData[2]\t$chrB_lb\t@binomData[3]\t$chrB_ub\t@binomData[4]";
+				$breakPoint{$i} = "@binomData[0]\t$chrA_lb\t$chrA_ub\t@binomData[2]\t$chrB_lb\t$chrB_ub\t@binomData[4]";
+				###########
 			}
 			push @pval,"@binomData[5] #@binomData[0]\t$chrA_lb\t@binomData[1]\t$chrA_ub\t\t@binomData[2]\t$chrB_lb\t@binomData[3]\t$chrB_ub\t@binomData[4]\n";
 		}
@@ -42,6 +50,7 @@ while ($i <= $#result){
 	if ($breakPoint{$i} ne ""){
 		print "$breakPoint{$i}\n";	
 	}
+	########################
 	$i++;
 }
 undef %breakPoint;

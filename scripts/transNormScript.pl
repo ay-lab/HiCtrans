@@ -1,14 +1,28 @@
 #author abhijit
 #created in 8th Sept, 2016
 #
-@file = `cat @ARGV[0]`;
-$bed  = @file[0];
-$mat  = @file[1];
-$chrA = @file[2];
-$chrB = @file[3];
+
+###########################
+	## Commented: 12/11/2018 ##
+#@file = `cat @ARGV[0]`;
+#$bed  = @file[0];
+#$mat  = @file[1];
+#$chrA = @file[2];
+#$chrB = @file[3];
+
+	## Added: 12/11/2018 ##
+$bed  = @ARGV[0];
+$mat  = @ARGV[1];
+$chrA = @ARGV[2];
+$chrB = @ARGV[3];
+###########################
+
+
 
 chomp ($bed,$mat,$chrA,$chrB);
-`mkdir $chrA-$chrB`;
+if (stat("$chrA-$chrB/") eq ""){
+	`mkdir $chrA-$chrB`;
+}
 open(bed,"$bed");
 while (<bed>)
 {

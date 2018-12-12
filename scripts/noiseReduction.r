@@ -21,7 +21,10 @@ frags = read.table(as.character(opt$f),header=F)
 colnames(frags) = c("chrA","chrA_Mid","chrB","chrB_Mid", "count")
 
 result = read.table(as.character(opt$t),header=T)
-colnames(result) = c("chrA","BoundaryAS","BreakPointA","BoundaryAE","chrB","BoundaryBS","BreakPointB","BoundaryBE","count")
+###### Abhijit: 12/10/2018 ######
+#colnames(result) = c("chrA","BoundaryAS","BreakPointA","BoundaryAE","chrB","BoundaryBS","BreakPointB","BoundaryBE","count")
+colnames(result) = c("chrA","BoundaryAS","BoundaryAE","chrB","BoundaryBS","BoundaryBE","count")
+###################
 
 func <- function(as,ae,bs,be,amax,amin,bmax,bmin,count){
 	aspan = ae-as
@@ -96,6 +99,7 @@ if (length(result[result$count >= as.integer(opt$c),]$count) > 0){
 	y = y[y$count >= as.integer(opt$c),]
 	y = y[y$ratio >= as.integer(opt$n),]
 	if (nrow(y) > 0){
+                colnames(y) = c("chrA","BoundaryAS","BoundaryAE","chrB","BoundaryBS","BoundaryBE","MaxCount","box.entropy","random.entropy.99uCI","ratio")
 		write.table(y,file=as.character(opt$o),row.names=F,quote=F,sep="\t")
 	} else {
 		cat ("No translocation\n")
