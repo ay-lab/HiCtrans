@@ -133,9 +133,9 @@ Output:
 
 	random.entropy.99uCI: Normalized entropy + 99% confidence interval of counts of random boxes (Similar area defined by BoundaryAS, BoundaryAE, BoundaryBS and BoundaryBE but excluding all the breakpoint boundaries).
 
-	ratio: box.entropy/random.entropy.99uCI (Translocated region will be enriched in heterogeneous mixture of different count values [high entropy] compared to a random region with homogeneous count values [Low entropy]).
- 
-    	chromA_BP_start, chromA_BP_end: chrA breakpoint at restriction site resolution.
+	ratio: box.entropy/random.entropy.99uCI (Translocated region will be enriched in heterogeneous mixture of different count values [high entropy] compared to a random region with homogeneous count values [Low entropy]). 
+	
+	chromA_BP_start, chromA_BP_end: chrA breakpoint at restriction site resolution.
   
  	chromB_BP_start, chromB_BP_end: chrB breakpoint at restriction site resolution.
 
