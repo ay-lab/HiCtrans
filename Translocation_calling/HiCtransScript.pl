@@ -6,8 +6,8 @@
 use Getopt::Long;
 
 sub HELP{
-	print "\n\tUsage: perl HiCtransScript.pl -bed T47D.chr7_15.bed -mat T47D.chr7_15.matrix -chromA chr7 -chrB chr15 -prefix T47D
-               perl HiCtransScript.pl -bed Genome.bed -mat Genome.matrix -chromA chr7 -chrB chr15 -prefix T47D -vp T47D_validpairs.txt -refrags HindIII_REfrags.bed\n\n";
+	print "\n\tUsage: perl HiCtransScript.pl -bed T47D.chr7_15.bed -mat T47D.chr7_15.matrix -chromA chr7 -chromB chr15 -prefix T47D -size chrom_hg19.sizes
+               perl HiCtransScript.pl -bed Genome.bed -mat Genome.matrix -chromA chr7 -chrB chr15 -prefix T47D -vp T47D_validpairs.txt -refrags HindIII_REfrags.bed -size chrom_hg19.sizes\n\n";
 	print "\t-bed: Genome wide binned bed file with index information\n
 	chr1    0       40000   1
 	chr1    40000   80000   2
@@ -112,9 +112,11 @@ sub run_hictrans{
         system("mv $chromA-$chromB.Translocation.result $folder/");
 	if (stat("$chromA-$chromB.Translocation.EntropyFiltered.result") ne ""){
         	system("mv $chromA-$chromB.Translocation.EntropyFiltered.result $folder/");
-		system("mv $prefix\_$chromA\_$chromB\_* $folder/");
 		system("mv $prefix.$chromA* $folder/");
-		system("mv $prefix.$chromB* $folder/");
+		## Commented on 01/22/2019 ##
+		#system("mv $prefix\_$chromA\_$chromB\_* $folder/");
+		#system("mv $prefix.$chromB* $folder/");
+		## END ##
 	}
 }
 
