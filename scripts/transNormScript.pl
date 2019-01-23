@@ -18,7 +18,7 @@ $chrB = @ARGV[3];
 ###########################
 
 #Change the $half_resolution as per the experiment
-$half_resolution = 2e4
+$half_resolution = 2e4;
 
 chomp ($bed,$mat,$chrA,$chrB);
 if (stat("$chrA-$chrB/") eq ""){
