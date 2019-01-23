@@ -264,8 +264,8 @@ sub generateTransNormFiles{
 
 generateTransNormFiles($chrA,$chrB);
 
-@updatedBedA = `grep -v "start" $chrA-$chrB/$chrA.feature |awk '{c++;print "$chrA\\t1\\t"\$2+2e4"\\t"c"\\t1"}'`;
-@updatedBedB = `grep -v "start" $chrA-$chrB/$chrB.feature |awk '{c++;print "$chrB\\t1\\t"\$2+2e4"\\t"c"\\t1"}'`;
+@updatedBedA = `grep -v "start" $chrA-$chrB/$chrA.feature |awk '{c++;print "$chrA\\t1\\t"\$2+$half_resolution"\\t"c"\\t1"}'`;
+@updatedBedB = `grep -v "start" $chrA-$chrB/$chrB.feature |awk '{c++;print "$chrB\\t1\\t"\$2+$half_resolution"\\t"c"\\t1"}'`;
 
 open (updatedBed,">./$chrA-$chrB/$chrA-$chrB.fragsfile");
 print updatedBed @updatedBedA;
