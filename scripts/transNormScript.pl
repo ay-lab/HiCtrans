@@ -17,7 +17,8 @@ $chrA = @ARGV[2];
 $chrB = @ARGV[3];
 ###########################
 
-
+#Change the $half_resolution as per the experiment
+$half_resolution = 2e4
 
 chomp ($bed,$mat,$chrA,$chrB);
 if (stat("$chrA-$chrB/") eq ""){
@@ -38,7 +39,7 @@ while (<bed>)
 		$bedChr{@bedData[3]}   = @bedData[0];
 		$bedStart{@bedData[3]} = @bedData[1];
 		$bedEnd{@bedData[3]}   = @bedData[2];
-		$bedMid{@bedData[3]}   = @bedData[1]+2e4;
+		$bedMid{@bedData[3]}   = @bedData[1]+$half_resolution;
 		$chrACount++; 
 	}
 	if (@bedData[0] eq $chrB)
@@ -51,7 +52,7 @@ while (<bed>)
                 $bedChr{@bedData[3]}   = @bedData[0];
                 $bedStart{@bedData[3]} = @bedData[1];
                 $bedEnd{@bedData[3]}   = @bedData[2];
-		$bedMid{@bedData[3]}   = @bedData[1]+2e4;
+		$bedMid{@bedData[3]}   = @bedData[1]+$half_resolution;
 		$chrBCount++;
         }
 	undef @bedData;	
