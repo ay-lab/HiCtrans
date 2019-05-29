@@ -51,6 +51,7 @@ while ($i <= $#result){
 		print "$breakPoint{$i}\n";	
 	}
 	########################
+	@resultData
 	$i++;
 }
 undef %breakPoint;
