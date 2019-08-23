@@ -53,9 +53,9 @@ breakpoint detected within the enriched box. Users can ignore the 'id' column.
 
 For detailed help use the following
 
-Rscript hictrans.v2.R --help
+Rscript hictrans.v3.R --help
 
-Usage: hictrans.v2.R [options]
+Usage: hictrans.v3.R [options]
 
 
 Options:
@@ -207,7 +207,7 @@ Options:
 
 
 Users need to run each chromosome pair independently. This is a helper function to generate all the combination of chromosomal pairs and run hictrans.R
-perl -e '@F=`cat $ARGV[0]`; for($i=0; $i<$#F; $i++){chomp $F[$i]; for($j=$i+1; $j<=$#F; $j++){chomp $F[$j]; print "Rscript hictrans.v2.R --mat $ARGV[1] --bed $ARGV[2] --chrA $F[$i] --chrB $F[$j] --prefix <prefix> --resolutions 2,3,4,5,6,8,10 --covq 0.1\n";}}' chrom.names matrix bed
+perl -e '@F=`cat $ARGV[0]`; for($i=0; $i<$#F; $i++){chomp $F[$i]; for($j=$i+1; $j<=$#F; $j++){chomp $F[$j]; print "Rscript hictrans.v3.R --mat $ARGV[1] --bed $ARGV[2] --chrA $F[$i] --chrB $F[$j] --prefix <prefix> --resolutions 2,3,4,5,6,8,10 --covq 0.1\n";}}' chrom.names matrix bed
 
 Here, chrom.names is a signle column file with chromsome names; matrix and bed files are names of the Hi-C sparse matrix and the associated bed files.
 To generate the sparse matrix use the 'build_matrix.cpp' file (compile this program by running 'g++ build_matrix.cpp -o build_matrix' in your command prompt). 
