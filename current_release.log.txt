@@ -20,3 +20,6 @@ HiCtrans input files (*.bed and *.matrix files)
 Added HiCtransScript.pl which will call and run HiCtrans pipeline. No input.txt file required.
 Added translocationREBreakPoint.r script, which will call translocation breakpoints at RE site
 resolution.
+
+#08/23/19
+Version 3 released
