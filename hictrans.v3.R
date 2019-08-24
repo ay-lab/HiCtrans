@@ -9,10 +9,12 @@ library(depmixS4)
 library(DEoptimR)
 
 
+## Change the path of build_matrix program when running from different folder##
+buildMatrixPath <- "build_matrix"
+buildMatrixPath <- normalizePath(buildMatrixPath) 
+
 ############### Get breakpoint calls at restriction level resolution #############
 
-buildMatrixPath <- "buildmatrix"
-buildMatrixPath <- normalizePath(buildMatrixPath) 
 ## Cluster the breakpoints
 RE_HClust <- function(box.df,cl.A,cl.B) {
 
