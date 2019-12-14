@@ -1089,8 +1089,8 @@ bed <- bed[bed$chr %in% c(chromA,chromB),]
 bed[bed$chr==chromA,]$index <- 1:nrow(bed[bed$chr==chromA,])
 bed[bed$chr==chromB,]$index <- 1:nrow(bed[bed$chr==chromB,])
 
-mat <- CreateMatrix(as.character(opt$mat),
-	       as.character(opt$bed),
+mat <- CreateMatrix(as.character(mat_pat),
+	       as.character(bed_pat),
 	       as.character(opt$chrA),
 	       as.character(opt$chrB), 
 	       as.character(opt$prefix)) 
