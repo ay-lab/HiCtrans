@@ -1139,7 +1139,7 @@ if (nrow(translocation.boxes) > 0) {
       write.table(data, file=paste0(prefix,"_hictrans.",chromA,"_",chromB,".MultiResolution_Filtered.Translocation.txt"),row.names=F,sep="\t",quote=F)
     }
     ## Call restriction resolution breakpoint filtering here ## 
-    if (opt$relevel == "Yes"){
+    if (opt$relevel == "Yes" | opt$relevel == "YES"){
       param <- data
       param <- param[param$class=="BreakPoint",]
       param <- RE_HClust(param,cl.A=opt$clusdist,cl.B=opt$clusdist)
