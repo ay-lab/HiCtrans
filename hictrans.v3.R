@@ -1046,7 +1046,7 @@ if (!file.exists(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chrom
   cmd <- paste0("ln -s ",bed_pat)
   system(cmd, wait=T)
   
-  if (opt$relevel == "Yes") {
+  if (opt$relevel == "Yes" | opt$relevel == "YES") {
     fragsFile_path <- normalizePath(opt$fragsFile)
     chromsize_path <- normalizePath(opt$chromsize)
     validpair_path <- normalizePath(opt$validpair)
@@ -1072,7 +1072,7 @@ if (!file.exists(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chrom
   cmd <- paste0("ln -s ",bed_pat)
   system(cmd, wait=T)
 
-  if (opt$relevel == "Yes") {
+  if (opt$relevel == "Yes" | opt$relevel == "YES") {
     fragsFile_path <- normalizePath(opt$fragsFile)
     chromsize_path <- normalizePath(opt$chromsize)
     validpair_path <- normalizePath(opt$validpair)
