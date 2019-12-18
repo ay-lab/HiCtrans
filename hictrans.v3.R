@@ -1139,9 +1139,12 @@ if (nrow(translocation.boxes) > 0) {
       write.table(data, file=paste0(prefix,"_hictrans.",chromA,"_",chromB,".MultiResolution_Filtered.Translocation.txt"),row.names=F,sep="\t",quote=F)
     }
     ## Call restriction resolution breakpoint filtering here ## 
-    if (opt$relevel == "Yes" | opt$relevel == "YES"){
+    if ((opt$relevel == "Yes" | opt$relevel == "YES") & nrow(data) > 0){
       param <- data
       param <- param[param$class=="BreakPoint",]
+      if (nrow(param) == 1) {
+        param[2,] <- param[1,]
+      }
       param <- RE_HClust(param,cl.A=opt$clusdist,cl.B=opt$clusdist)
       chromA_BP_start <- list()
       chromA_BP_end <- list()
@@ -1157,8 +1160,8 @@ if (nrow(translocation.boxes) > 0) {
         opt$endB   <- param$BoundaryBE[k]
 
         df <- mapVPs_on_REs(
-              re.bed=as.character(opt$fragsFile),
-              chrom.size=as.character(opt$chromsize),
+	      re.bed=as.character(fragsFile_path),
+              chrom.size=as.character(chromsize_path),
               vp.file=as.character(opt$validpair),
               prefix=as.character(opt$prefix),
               chromA=as.character(opt$chrA),
