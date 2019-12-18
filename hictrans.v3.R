@@ -1039,7 +1039,10 @@ if (!file.exists(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chrom
 
   mat_pat <- normalizePath(opt$mat)
   bed_pat <- normalizePath(opt$bed)
- 
+  fragsFile_path <- normalizePath(opt$fragsFile)
+  chromsize_path <- normalizePath(opt$chromsize)
+  validpair_path <- normalizePath(opt$validpair)    
+	
   setwd(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chromB,"_",as.integer(high.resolution)))
   cmd <- paste0("ln -s ",mat_pat)
   system(cmd, wait=T)
@@ -1047,9 +1050,6 @@ if (!file.exists(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chrom
   system(cmd, wait=T)
   
   if (opt$relevel == "Yes" | opt$relevel == "YES") {
-    fragsFile_path <- normalizePath(opt$fragsFile)
-    chromsize_path <- normalizePath(opt$chromsize)
-    validpair_path <- normalizePath(opt$validpair)
     cmd <- paste0("ln -s ",fragsFile_path)
     system(cmd, wait=T)
     cmd <- paste0("ln -s ",chromsize_path)
@@ -1065,7 +1065,10 @@ if (!file.exists(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chrom
 
   mat_pat <- normalizePath(opt$mat)
   bed_pat <- normalizePath(opt$bed)
-
+  fragsFile_path <- normalizePath(opt$fragsFile)
+  chromsize_path <- normalizePath(opt$chromsize)
+  validpair_path <- normalizePath(opt$validpair)    
+	
   setwd(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chromB,"_",as.integer(high.resolution)))
   cmd <- paste0("ln -s ",mat_pat)
   system(cmd, wait=T)
@@ -1073,9 +1076,6 @@ if (!file.exists(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chrom
   system(cmd, wait=T)
 
   if (opt$relevel == "Yes" | opt$relevel == "YES") {
-    fragsFile_path <- normalizePath(opt$fragsFile)
-    chromsize_path <- normalizePath(opt$chromsize)
-    validpair_path <- normalizePath(opt$validpair)
     cmd <- paste0("ln -s ",fragsFile_path)
     system(cmd, wait=T)
     cmd <- paste0("ln -s ",chromsize_path)
