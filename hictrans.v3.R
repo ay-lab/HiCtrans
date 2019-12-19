@@ -1162,7 +1162,7 @@ if (nrow(translocation.boxes) > 0) {
         df <- mapVPs_on_REs(
 	      re.bed=as.character(fragsFile_path),
               chrom.size=as.character(chromsize_path),
-              vp.file=as.character(opt$validpair),
+              vp.file=as.character(validpair_path),
               prefix=as.character(opt$prefix),
               chromA=as.character(opt$chrA),
               chromB=as.character(opt$chrB),
