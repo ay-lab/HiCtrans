@@ -1162,7 +1162,7 @@ if (nrow(translocation.boxes) > 0) {
       if (nrow(param) == 1) {
         param[2,] <- param[1,]
       }
-      print (param) 
+      
       param <- RE_HClust(param,cl.A=opt$clusdist,cl.B=opt$clusdist)
       print (param)
       chromA_BP_start <- list()
@@ -1215,11 +1215,6 @@ if (nrow(translocation.boxes) > 0) {
          chromA_BP_end[k]   <- head(df$bed[df$bed$chrom==as.character(opt$chrA) & df$bed$start >= floor(bp_optimized$par[1]),]$end,1)
          chromB_BP_start[k] <- head(df$bed[df$bed$chrom==as.character(opt$chrB) & df$bed$start >= floor(bp_optimized$par[2]),]$start,1)
          chromB_BP_end[k]   <- head(df$bed[df$bed$chrom==as.character(opt$chrB) & df$bed$start >= floor(bp_optimized$par[2]),]$end,1)
-         print (bp_optimized$par)
-         print (chromA_BP_start[k])
-         print (chromA_BP_end[k])
-         print (chromB_BP_start[k])
-         print (chromB_BP_end[k])
 
          if (is.null(chromA_BP_start[k][[1]])) {
            chromA_BP_start[k] <- tail(df$bed[df$bed$chrom==as.character(opt$chrA) & df$bed$end <= floor(bp_optimized$par[1]),]$start,1)   
@@ -1229,22 +1224,12 @@ if (nrow(translocation.boxes) > 0) {
            chromB_BP_start[k] <- tail(df$bed[df$bed$chrom==as.character(opt$chrB) & df$bed$end <= floor(bp_optimized$par[2]),]$start,1)
            chromB_BP_end[k]   <- tail(df$bed[df$bed$chrom==as.character(opt$chrB) & df$bed$end <= floor(bp_optimized$par[2]),]$end,1)
          }
-         print (chromA_BP_start[k])
-         print (chromA_BP_end[k])
-         print (chromB_BP_start[k])
-         print (chromB_BP_end[k])
-         print ("-----\n")
          k = k+1
       }
       chromA_BP_start <- unlist(chromA_BP_start)
       chromA_BP_end   <- unlist(chromA_BP_end)
       chromB_BP_start <- unlist(chromB_BP_start)
       chromB_BP_end   <- unlist(chromB_BP_end)
-      print (param)
-      print (chromA_BP_start)
-      print (chromA_BP_end)
-      print (chromB_BP_start)  
-      print (chromB_BP_end)
       param <- cbind(param,chromA_BP_start,chromA_BP_end,chromB_BP_start,chromB_BP_end)
       write.table(param,file=paste0(opt$prefix,"_",opt$chrA,"_",opt$chrB,".RE_BreakPoints.txt"),col.names=T,row.names=F,sep="\t",quote=F)
     }
