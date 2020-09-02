@@ -1,3 +1,5 @@
+## HiCtrans 
+
 This is an updated version of HiCtrans program. HiCtrans can scan inter-chromosomal Hi-C matrix and report translocations, their breakpoints at restriction site or at any lower resolution.
 Check the paper https://doi.org/10.1093/bioinformatics/btx664 for details about the method.
 
@@ -14,7 +16,9 @@ Result description:
 
 A successfull HiCtrans run will generate the following result files and folders
 
- <prefix>_hictrans
+```bash
+
+<prefix>_hictrans
        .
 	\<prefix>_hictrans_<chrA>_<chrB>_<resolution>
                .
@@ -40,6 +44,7 @@ A successfull HiCtrans run will generate the following result files and folders
 	<prefix>_abs.bed
 	<prefix>.<chrA>_<chrB>.mat.txt 
 	<prefix>.<chrA>_<chrB>.log.txt
+```
 
 NOTE: MultiResolution_supported_Translocations folder is only created when there are such cases.
 
@@ -52,6 +57,8 @@ The zscore column repersents the enrichment of counts within the box associated 
 breakpoint detected within the enriched box. Users can ignore the 'id' column.
 
 For detailed help use the following
+
+```bash
 
 Rscript hictrans.v3.R --help
 
@@ -205,9 +212,13 @@ Options:
         -h, --help
                 Show this help message and exit
 
+```
 
 Users need to run each chromosome pair independently. This is a helper function to generate all the combination of chromosomal pairs and run hictrans.R
+
+```bash
 perl -e '@F=`cat $ARGV[0]`; for($i=0; $i<$#F; $i++){chomp $F[$i]; for($j=$i+1; $j<=$#F; $j++){chomp $F[$j]; print "Rscript hictrans.v3.R --mat $ARGV[1] --bed $ARGV[2] --chrA $F[$i] --chrB $F[$j] --prefix $ARGV[3] --resolutions 2,3,4,5,6,8,10 --covq 0.1\n";}}' chrom.names matrix bed prefix
+```
 
 Here, chrom.names is a signle column file with chromsome names; matrix and bed files are names of the Hi-C sparse matrix and the associated bed files.
 To generate the sparse matrix use the 'build_matrix.cpp' file (compile this program by running 'g++ build_matrix.cpp -o build_matrix' in your command prompt). 
@@ -216,9 +227,18 @@ The input to the build_matrix program is a validpair file described in the help 
 
 If you are staring with HiCUP, then use hicup_filter to create valid Hi-C read pairs (generally ends with a name filt.bam or filt.sam).
 Then use the following command to generate a validpair file from the filt.bam file
+
+```bash
 samtools view filt.bam| awk -v OFS='\t' '{print $1,$3,$4,"+"}' |paste - - |awk -v OFS='\t' '{print $1,$2,$3,$4,$6,$7,$8}' > hictrans.validpair
+```
 
 NOTE: The bam file should be sorted based on read name.
+
+# Filtering the result
+HiCtrans recommends filtering the black listed regions (+/- 100Kb) from the output result.
+These regions tends to produce higher interactions and can artificially appear as translocations.
+Cheack the black list here for different genomes 
+https://sites.google.com/site/anshulkundaje/projects/blacklists
 
 R library requirements:
 data.table, hashmap, changepoint, hashmap, 
