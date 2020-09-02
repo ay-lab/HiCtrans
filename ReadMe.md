@@ -1,4 +1,4 @@
-## HiCtrans 
+# HiCtrans 
 
 This is an updated version of HiCtrans program. HiCtrans can scan inter-chromosomal Hi-C matrix and report translocations, their breakpoints at restriction site or at any lower resolution.
 Check the paper https://doi.org/10.1093/bioinformatics/btx664 for details about the method.
