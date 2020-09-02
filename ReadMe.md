@@ -240,9 +240,9 @@ These regions tends to produce higher interactions and can artificially appear a
 Cheack the black list here for different genomes 
 https://sites.google.com/site/anshulkundaje/projects/blacklists
 
-#R library requirements:
+# R library requirements:
 data.table, hashmap, changepoint, hashmap, 
 optparse, Rcpp, caTools, depmixS4 DEoptimR
 
-#For troubleshoot:
+# For troubleshoot:
 Abhijit Chakraborty (abhijit@lji.org)
