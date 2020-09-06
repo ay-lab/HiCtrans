@@ -1045,10 +1045,12 @@ if (!file.exists(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chrom
   dir.create(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chromB,"_",as.integer(high.resolution)))
   mat.dir.name <- dirname(opt$mat)
   bed.dir.name <- dirname(opt$bed)
-
-  fragsFile_path <- normalizePath(opt$fragsFile)
+	
+ if (opt$relevel == "Yes" | opt$relevel == "YES") {
+    fragsFile_path <- normalizePath(opt$fragsFile)
+    validpair_path <- normalizePath(opt$validpair)
+  }
   chromsize_path <- normalizePath(opt$chromsize)
-  validpair_path <- normalizePath(opt$validpair)
   mat_pat <- normalizePath(opt$mat)
   bed_pat <- normalizePath(opt$bed)
  
@@ -1074,9 +1076,12 @@ if (!file.exists(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chrom
 
   mat_pat <- normalizePath(opt$mat)
   bed_pat <- normalizePath(opt$bed)
-  fragsFile_path <- normalizePath(opt$fragsFile)
   chromsize_path <- normalizePath(opt$chromsize)
-  validpair_path <- normalizePath(opt$validpair)
+	
+  if (opt$relevel == "Yes" | opt$relevel == "YES") {
+    fragsFile_path <- normalizePath(opt$fragsFile)
+    validpair_path <- normalizePath(opt$validpair)
+  }
 
   setwd(paste0(prefix,"_hictrans/",prefix,"_hictrans_",chromA,"_",chromB,"_",as.integer(high.resolution)))
   cmd <- paste0("ln -s ",mat_pat)
