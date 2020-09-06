@@ -239,9 +239,6 @@ Example
 Rscript ../hictrans.v3.R --mat T47D_20Kb_chr10_chr20.matrix --bed T47D_20Kb_chr10_chr20_abs.bed --chrA chr10 --chrB chr20 --prefix T47D_20Kb_chr10_chr20 --resolutions 2,3,4,5,6,8,10 --covq 0.1 --chromsize chrom_hg19.sizes
 ```
 
-Thanks for your debugging and yes the HiC-pro tool script will be fine. 
-A few prechecks were missing in the last update, I have updated the help file 
-
 If you have the validpair file, please use the following
 
 ```bash
