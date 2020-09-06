@@ -64,7 +64,6 @@ Rscript hictrans.v3.R --help
 
 Usage: hictrans.v3.R [options]
 
-
 Options:
         --mat=MAT
                 An upper triangular Hi-C sparse matrix
@@ -119,6 +118,13 @@ Options:
                 HiCtrans will find enriched boxes within the inter-chromosomal matrix as potential translocation box.
                 The enrichment is calculated as Z-score against a background with all possible similar sized boxes in the inter-chromosomal matrix.
                 Increasing <minzscore> value will keep the most enriched trans interacting boxes.
+
+
+        --boxzscore=BOXZSCORE
+                Minimum Zscore of a possible translocation box to be retained [default is 1].
+
+                HiCtrans will keep boxes enriched above boxzscore threshold to find translocations among them.
+                Increasing <boxzscore> value will keep the most enriched trans interacting boxes.
 
 
         --locq=LOCQ
@@ -209,6 +215,10 @@ Options:
         --seB=SEB
                 Extend +(ve) bp of the 3' HMM segment border of chromosome B for breakpoint identification. Default 100Kb.
 
+
+        --precheck=PRECHECK
+                Precheck option will help to restrict HiCtrans search only to chromosome combinations with significant max interaction compared to mean non-zero count value. [Default 1. Lower value will increase stringency]
+
         -h, --help
                 Show this help message and exit
 
@@ -216,6 +226,7 @@ Options:
 
 Users need to run each chromosome pair independently. This is a helper function to generate all the combination of chromosomal pairs and run hictrans.R
 HiCtrans can be run with or without the restriction level validpair information file. 
+
 If you don't have the validpair file, please use the following command
 
 ```bash
@@ -240,7 +251,9 @@ Then use the following command to generate a validpair file from the filt.bam fi
 samtools view filt.bam| awk -v OFS='\t' '{print $1,$3,$4,"+"}' |paste - - |awk -v OFS='\t' '{print $1,$2,$3,$4,$6,$7,$8}' > hictrans.validpair
 ```
 
-NOTE: The bam file should be sorted based on read name.
+### Note
+1. HiCtrans requires 10Kb resolution Hi-C matrix or multiple of 10Kb matrix to begin with
+2. The bam file should be sorted based on read name.
 
 # Filtering the result
 HiCtrans recommends filtering the black listed regions (+/- 100Kb) from the output result.
