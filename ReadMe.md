@@ -49,8 +49,8 @@ A successfull HiCtrans run will generate the following result files and folders
 NOTE: MultiResolution_supported_Translocations folder is only created when there are such cases.
 
 Once finished check the <prefix>_<resolution>.<chrA>_<chrB>.MultiResolution_Filtered.Translocation.txt file for possible translocations.
-<prefix>_<resolution>.<chrA>_<chrB>.MultiResolution_Filtered.Translocation.txt provides strong support for the translocation with any anomaly in the inter Hi-C data.
-If there is no multi-resolution supported translocations, users can check the <prefix>_<resolution>.<chrA>_<chrB>.preCluster.txt file 'Translocations' folder.
+\<prefix>\_\<resolution>.\<chrA>\_\<chrB>.MultiResolution_Filtered.Translocation.txt provides strong support for the translocation with any anomaly in the inter Hi-C data.
+If there is no multi-resolution supported translocations, users can check the \<prefix>\_\<resolution>.\<chrA>\_\<chrB>.preCluster.txt file 'Translocations' folder.
 This file will have all the translocations (BreakPoints and Translocation boxes) found in the chromosomal pair data at different resolutions. 
 Users can check the highest resolution in the 'resolution column' (lower the value higher the resolution) for further investigation.
 The zscore column repersents the enrichment of counts within the box associated with the translocation. The 'count' column is simply the hic count of the
