@@ -252,7 +252,7 @@ Rscript ../hictrans.v3.R --mat T47D_20Kb_chr10_chr20.matrix --bed T47D_20Kb_chr1
 ```
 
 
-Here, chrom.names is a signle column file with chromsome names; matrix and bed files are names of the Hi-C sparse matrix and the associated bed files.
+Here, chrom_name.file is a signle column file with chromsome names; matrix and bed files are names of the Hi-C sparse matrix and the associated bed files.
 To generate the sparse matrix use the 'build_matrix.cpp' file (compile this program by running 'g++ build_matrix.cpp -o build_matrix' in your command prompt). 
 For details of the program check the https://github.com/nservant/HiC-Pro repository.
 The input to the build_matrix program is a validpair file described in the help section. 
