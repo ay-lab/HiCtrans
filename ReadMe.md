@@ -217,7 +217,7 @@ Options:
 
 
         --precheck=PRECHECK
-                Precheck option will help to restrict HiCtrans search only to chromosome combinations with significant max interaction compared to mean non-zero count value. [Default 1. Lower value will increase stringency]
+                Precheck option will help to restrict HiCtrans search only to chromosome combinations with significant max interaction compared to mean non-zero count value [Default 1. Lower value will increase stringency]
 
         -h, --help
                 Show this help message and exit
@@ -233,11 +233,27 @@ If you don't have the validpair file, please use the following command
 perl -e '@F=`cat $ARGV[0]`; for($i=0; $i<$#F; $i++){chomp $F[$i]; for($j=$i+1; $j<=$#F; $j++){chomp $F[$j]; print "Rscript hictrans.v3.R --mat $ARGV[1] --bed $ARGV[2] --chrA $F[$i] --chrB $F[$j] --prefix $ARGV[3] --resolutions 2,3,4,5,6,8,10 --covq 0.1 --chromsize chrom_hg19.sizes\n";}}' <chrom_name.file> <matrix.file> <bed.file> <prefix>
 ```
 
+Example
+
+```bash
+Rscript ../hictrans.v3.R --mat T47D_20Kb_chr10_chr20.matrix --bed T47D_20Kb_chr10_chr20_abs.bed --chrA chr10 --chrB chr20 --prefix T47D_20Kb_chr10_chr20 --resolutions 2,3,4,5,6,8,10 --covq 0.1 --chromsize chrom_hg19.sizes
+```
+
+Thanks for your debugging and yes the HiC-pro tool script will be fine. 
+A few prechecks were missing in the last update, I have updated the help file 
+
 If you have the validpair file, please use the following
 
 ```bash
 perl -e '@F=`cat $ARGV[0]`; for($i=0; $i<$#F; $i++){chomp $F[$i]; for($j=$i+1; $j<=$#F; $j++){chomp $F[$j]; print "Rscript ../HiCtrans/hictrans.v3.R --mat $ARGV[1] --bed $ARGV[2] --chrA $F[$i] --chrB $F[$j] --prefix $ARGV[3] --resolutions 2,3,4,5,6,8,10 --covq 0.1 --relevel YES --fragsFile Resfrag_hg19.bed --validpair $ARGV[4] --chromsize chrom_hg19.sizes --precheck 1e-5\n";}}' <chrom_name.file> <matrix.file> <bed.file> <prefix> <validpair.file>
 ```
+
+Example (Validpair files are not provided in the example folder, but we assume the data by default is processed with HiC-pro and validpair file is available)
+
+```bash
+Rscript ../hictrans.v3.R --mat T47D_20Kb_chr10_chr20.matrix --bed T47D_20Kb_chr10_chr20_abs.bed --chrA chr10 --chrB chr20 --prefix T47D_20Kb_chr10_chr20 --resolutions 2,3,4,5,6,8,10 --covq 0.1 --relevel YES --fragsFile HindIII_resfrag_hg19.bed --validpair T47D_validpair.txt --chromsize chrom_hg19.sizes --precheck 1e-5
+```
+
 
 Here, chrom.names is a signle column file with chromsome names; matrix and bed files are names of the Hi-C sparse matrix and the associated bed files.
 To generate the sparse matrix use the 'build_matrix.cpp' file (compile this program by running 'g++ build_matrix.cpp -o build_matrix' in your command prompt). 
