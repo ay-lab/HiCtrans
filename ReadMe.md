@@ -215,9 +215,17 @@ Options:
 ```
 
 Users need to run each chromosome pair independently. This is a helper function to generate all the combination of chromosomal pairs and run hictrans.R
+HiCtrans can be run with or without the restriction level validpair information file. 
+If you don't have the validpair file, please use the following command
 
 ```bash
-perl -e '@F=`cat $ARGV[0]`; for($i=0; $i<$#F; $i++){chomp $F[$i]; for($j=$i+1; $j<=$#F; $j++){chomp $F[$j]; print "Rscript hictrans.v3.R --mat $ARGV[1] --bed $ARGV[2] --chrA $F[$i] --chrB $F[$j] --prefix $ARGV[3] --resolutions 2,3,4,5,6,8,10 --covq 0.1\n";}}' chrom.names matrix bed prefix
+perl -e '@F=`cat $ARGV[0]`; for($i=0; $i<$#F; $i++){chomp $F[$i]; for($j=$i+1; $j<=$#F; $j++){chomp $F[$j]; print "Rscript hictrans.v3.R --mat $ARGV[1] --bed $ARGV[2] --chrA $F[$i] --chrB $F[$j] --prefix $ARGV[3] --resolutions 2,3,4,5,6,8,10 --covq 0.1 --chromsize chrom_hg19.sizes\n";}}' <chrom_name.file> <matrix.file> <bed.file> <prefix>
+```
+
+If you have the validpair file, please use the following
+
+```bash
+perl -e '@F=`cat $ARGV[0]`; for($i=0; $i<$#F; $i++){chomp $F[$i]; for($j=$i+1; $j<=$#F; $j++){chomp $F[$j]; print "Rscript ../HiCtrans/hictrans.v3.R --mat $ARGV[1] --bed $ARGV[2] --chrA $F[$i] --chrB $F[$j] --prefix $ARGV[3] --resolutions 2,3,4,5,6,8,10 --covq 0.1 --relevel YES --fragsFile Resfrag_hg19.bed --validpair $ARGV[4] --chromsize chrom_hg19.sizes --precheck 1e-5\n";}}' <chrom_name.file> <matrix.file> <bed.file> <prefix> <validpair.file>
 ```
 
 Here, chrom.names is a signle column file with chromsome names; matrix and bed files are names of the Hi-C sparse matrix and the associated bed files.
