@@ -119,6 +119,7 @@ Options:
                 The enrichment is calculated as Z-score against a background with all possible similar sized boxes in the inter-chromosomal matrix.
                 Increasing <minzscore> value will keep the most enriched trans interacting boxes.
 
+
 	--minboxsize=MINBOXSIZE
                 Minimum size of a possible translocation box relative to its Hi-C resolution [default is 0 i.e. no filtering. If set to non-zero value, then (Breakpoint.start - Breakpoint.end)/HiC.resolution > minboxsize filtering will be applied].
 
