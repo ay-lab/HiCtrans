@@ -966,6 +966,11 @@ option_list = list(
   \t\tThe enrichment is calculated as Z-score against a background with all possible similar sized boxes in the inter-chromosomal matrix.
   \t\tIncreasing <minzscore> value will keep the most enriched trans interacting boxes.\n"),
 
+  make_option(c("--minboxsize"), type="numeric", default=0, help="Minimum size of a possible translocation box relative to its Hi-C resolution [default is 0 i.e. no filtering. If set to non-zero value, then (Breakpoint.start - Breakpoint.end)/HiC.resolution > minboxsize filtering will be applied].\n
+  \t\tHiCtrans will find enriched boxes within the inter-chromosomal matrix as potential translocation box.
+  \t\tThe minimum box size threshold will filter out small false positive multi-resolution supported potential translocation boxes.\n
+  \t\tIncreasing <minboxsize> value will keep the most enriched and larger trans interacting boxes.\n"),
+	
   make_option(c("--boxzscore"), type="numeric", default=1, help="Minimum Zscore of a possible translocation box to be retained [default is 1].\n
   \t\tHiCtrans will keep boxes enriched above boxzscore threshold to find translocations among them.
   \t\tIncreasing <boxzscore> value will keep the most enriched trans interacting boxes.\n"),
@@ -1157,6 +1162,8 @@ if (nrow(translocation.boxes) > 0) {
     data <- HClust(box.df=data,cl.A=0,cl.B=0,colNameA="boxA.cl",colNameB="boxB.cl",step=1)
     data <- ZoomIn(data, translocation.boxes, resolution, multires)
     data <- data[data$resolution <= maxres,]
+    data <- data[((BoundaryAE - BoundaryAS)/data$resolution) > opt$minboxsize | ((BoundaryBE - BoundaryBS)/data$resolution) > opt$minboxsize,]
+
     if (nrow(data) > 0) {
       write.table(data, file=paste0(prefix,"_hictrans.",chromA,"_",chromB,".MultiResolution_Filtered.Translocation.txt"),row.names=F,sep="\t",quote=F)
     }
