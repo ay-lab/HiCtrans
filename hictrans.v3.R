@@ -1162,7 +1162,7 @@ if (nrow(translocation.boxes) > 0) {
     data <- HClust(box.df=data,cl.A=0,cl.B=0,colNameA="boxA.cl",colNameB="boxB.cl",step=1)
     data <- ZoomIn(data, translocation.boxes, resolution, multires)
     data <- data[data$resolution <= maxres,]
-    data <- data[((BoundaryAE - BoundaryAS)/data$resolution) > opt$minboxsize | ((BoundaryBE - BoundaryBS)/data$resolution) > opt$minboxsize,]
+    data <- data[((data$BoundaryAE - data$BoundaryAS)/data$resolution) > opt$minboxsize | ((data$BoundaryBE - data$BoundaryBS)/data$resolution) > opt$minboxsize,]
 
     if (nrow(data) > 0) {
       write.table(data, file=paste0(prefix,"_hictrans.",chromA,"_",chromB,".MultiResolution_Filtered.Translocation.txt"),row.names=F,sep="\t",quote=F)
