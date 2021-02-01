@@ -144,7 +144,7 @@ Options:
 
 
         --mincount=MINCOUNT
-                Minimum count of a possible breakpoint to be retained when compared to all possible chrA-chrB interaction [default cutoff is 10].
+                Minimum count of a possible breakpoint to be retained when compared to all possible chrA-chrB interaction [default cutoff is 10, This is based on 10Kb HiC matrix].
 
                 This is an absolute minimum count cutoff to filter out breakpoints detected at any resolution.
                 Increasing <mincount> value will keep only the most stringent interacting pair.
