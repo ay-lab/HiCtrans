@@ -774,10 +774,15 @@ GetSegments <- function(mat, bed, chromA, chromB, prefix, covq=0.75, locq, minco
   r.center <- r.sum - quantile(r.sum, covq)
   c.center <- c.sum - quantile(c.sum, covq)
  
-  seg <- ifelse(resolution > 250000, 50, 100) 
-  r.cpt <- suppressWarnings(cpt.meanvar(r.center,Q=seg,method="BinSeg"))
-  c.cpt <- suppressWarnings(cpt.meanvar(c.center,Q=seg,method="BinSeg"))
-
+  ##Modified on 09/27/2021
+  ##Commented
+  #seg <- ifelse(resolution > 250000, 50, 100) 
+  #r.cpt <- suppressWarnings(cpt.meanvar(r.center,Q=seg,method="BinSeg"))
+  #c.cpt <- suppressWarnings(cpt.meanvar(c.center,Q=seg,method="BinSeg"))
+  ##Updated
+  r.cpt <- suppressWarnings(cpt.meanvar(r.center,Q=ifelse((length(r.center)/2) < 100, round(((length(r.center)/2) - 1), 0), 100),method="BinSeg"))  
+  c.cpt <- suppressWarnings(cpt.meanvar(c.center,Q=ifelse((length(c.center)/2) < 100, round(((length(c.center)/2) - 1), 0), 100),method="BinSeg"))
+	
   ## Flush changepoint summary ## 
   print ("Row and Column changepoint summary")
   print (r.cpt)
